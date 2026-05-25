@@ -1,5 +1,3 @@
-const AppError = require("../utils/AppError");
-
 const errorHandler = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "Internal Server Error";
@@ -9,6 +7,7 @@ const errorHandler = (err, req, res, next) => {
     const errors = Object.values(err.errors).map((e) => e.message);
     err.statusCode = 400;
     err.message = "Validation Error";
+
     return res.status(err.statusCode).json({
       success: false,
       statusCode: err.statusCode,
@@ -22,6 +21,7 @@ const errorHandler = (err, req, res, next) => {
     const field = Object.keys(err.keyPattern)[0];
     err.statusCode = 400;
     err.message = `${field} already exists`;
+
     return res.status(err.statusCode).json({
       success: false,
       statusCode: err.statusCode,

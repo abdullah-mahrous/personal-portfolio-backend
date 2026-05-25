@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
+const xss = require("xss");
 
 const commentSchema = new mongoose.Schema(
   {
@@ -19,11 +20,13 @@ const commentSchema = new mongoose.Schema(
       required: [true, "Commenter name is required"],
       trim: true,
       maxlength: [100, "Name cannot exceed 100 characters"],
+      set: (v) => xss(v ? v.trim() : v),
     },
     content: {
       type: String,
       required: [true, "Comment content is required"],
       maxlength: [1000, "Comment cannot exceed 1000 characters"],
+      set: (v) => xss(v ? v.trim() : v),
     },
     creationDate: {
       type: Date,

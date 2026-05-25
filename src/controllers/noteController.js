@@ -1,4 +1,5 @@
 const Note = require("../models/Note");
+const logger = require("../utils/logger");
 const Comment = require("../models/Comment");
 const AppError = require("../utils/AppError");
 const asyncHandler = require("../utils/asyncHandler");
@@ -79,10 +80,11 @@ exports.updateNote = asyncHandler(async (req, res, next) => {
   const allowedFields = ["title", "content", "readTime"];
 
   allowedFields.forEach((field) => {
-    if (req.body[field] !== undefined) {
+    if (req.body[field] !== undefined && req.body[field]) {
       note[field] = req.body[field];
     }
   });
+  logger.info("Updating note with data:", req.body);
 
   // Handle image update: if new image provided, delete old one and upload new one
   if (req.file) {

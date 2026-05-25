@@ -1,24 +1,15 @@
 # 🚀 Portfolio Backend API
 
-Backend API for my portfolio and Dev Journal platform, built with Node.js, Express.js and MongoDB.
-
-Supports developer notes, comments, authentication and content management through a scalable REST API architecture.
+Backend API for a portfolio Dev Journal with admin authentication, Cloudinary image uploads, and public comments. Built with Node.js, Express.js, MongoDB, and Swagger documentation.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-
----
-
-## 📦 Installation
-
-```bash
-npm install
-npm run dev
-```
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB (with Mongoose)
+- **Authentication**: JWT + bcryptjs
+- **File Upload**: Multer + Cloudinary
+- **API Documentation**: Swagger/OpenAPI
+- **Validation**: Joi

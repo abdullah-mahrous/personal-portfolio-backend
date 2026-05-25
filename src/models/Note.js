@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
+const xss = require("xss");
 
 const noteSchema = new mongoose.Schema(
   {
@@ -14,10 +15,12 @@ const noteSchema = new mongoose.Schema(
       required: [true, "Note title is required"],
       trim: true,
       maxlength: [200, "Title cannot exceed 200 characters"],
+      set: (v) => xss(v ? v.trim() : v),
     },
     content: {
       type: String,
       required: [true, "Note content is required"],
+      set: (v) => xss(v ? v.trim() : v),
     },
     readTime: {
       type: Number,

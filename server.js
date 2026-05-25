@@ -1,10 +1,3 @@
-// grasp and understand all codebase
-// server sends 500 when commentid is sent instead of nodeid in get single note (when add 'id' not '_id')
-// there are 2 ids in every entity and creation date is created at
-// investigate if put request is really partially
-// if error happend and note is edited and imgurl is null the asset could be lost
-// add markdown support to content and test it
-
 const app = require("./src/app");
 const { connectDB } = require("./src/config/database");
 const config = require("./src/config/environment");
