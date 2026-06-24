@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const rateLimit = require("express-rate-limit");
 const swaggerUi = require("swagger-ui-express");
+const { inject } = require("@vercel/analytics");
 const config = require("./config/environment");
 const swaggerSpecs = require("./swagger/swaggerDef");
 const errorHandler = require("./middleware/errorHandler");
@@ -13,6 +14,9 @@ const noteRoutes = require("./routes/noteRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 
 const app = express();
+
+// Initialize Vercel Web Analytics
+inject();
 
 // Security Middleware
 app.use(helmet());
